@@ -100,7 +100,7 @@ class LoLRanks {
       console.error('Error getting ranked data: \n');
       console.trace(error);
 
-      return i18n.__('reply7') + `${message.guild.channels.cache.get(this.config.channels.help).toString()}!`;
+      return i18n.__('reply7') + ' ' + `${message.guild.channels.cache.get(this.config.channels.help).toString()}!`;
     }
 
     return rankData;
@@ -190,12 +190,6 @@ class LoLRanks {
         // TODO change translations to profile picture method
         // TODO add Done button
         // TODO check whitespaces of translations used in replies
-        reply += i18n.__('reply3_1') + '\n'
-          + i18n.__('reply3_2') + '\n'
-          + i18n.__('reply3_3') + ` \`\`${player.authCode}\`\`\n`
-          + i18n.__('reply3_4') + '\n'
-          + i18n.__('reply3_5') + '``<@ + this.client.application.id + > rank``' + i18n.__('reply3_6') + '\n\n'
-          + i18n.__('reply3_7') + (!this.config.channels.help ? message.guild.channels.cache.get(this.config.channels.help).toString() : serverOwner) + '!';
       }
     }
 
@@ -254,9 +248,9 @@ class LoLRanks {
         // Compare checkValue with player.totalValue
         if (player.totalValue !== null) {
           if (player.totalValue > checkValue) {
-            await roleChannel.send(member.user + i18n.__('levelDown') + tierIcon ?? '' + '**' + translatedTier + ' ' + soloQueueRankData?.rank ?? '' + '**!');
+            await roleChannel.send(member.user + ' ' + i18n.__('levelDown') + ' ' + tierIcon ?? '' + '**' + translatedTier + ' ' + soloQueueRankData?.rank ?? '' + '**!');
           } else if (player.totalValue !== null && player.totalValue < checkValue) {
-            await roleChannel.send(member.user + i18n.__('levelUp') + tierIcon ?? '' + '**' + translatedTier + ' ' + soloQueueRankData?.rank ?? '' + '**!');
+            await roleChannel.send(member.user + ' ' + i18n.__('levelUp') + ' ' + tierIcon ?? '' + '**' + translatedTier + ' ' + soloQueueRankData?.rank ?? '' + '**!');
           }
         }
 
@@ -268,12 +262,12 @@ class LoLRanks {
         player = this.getPlayer(discordID);
 
         if (member.roles.cache.find(r => r.id === role.id)) {
-          reply += i18n.__('reply4_1') + (tierIcon ?? '') + '**' + translatedTier + ' ' + (soloQueueRankData?.rank ?? '') + ' ' + i18n.__('reply4_2');
+          reply += i18n.__('reply4_1') + ' ' + (tierIcon ?? '') + '**' + translatedTier + ' ' + (soloQueueRankData?.rank ?? '') + ' ' + i18n.__('reply4_2');
         } else {
           await this.removeAllEloRolesFromUser(member);
           await member.roles.add(role);
 
-          reply += i18n.__('reply5_1') + (tierIcon ?? '') + '**' + translatedTier + ' ' + (soloQueueRankData?.rank ?? '') + ' ' + i18n.__('reply5_2');
+          reply += i18n.__('reply5_1') + ' ' + (tierIcon ?? '') + '**' + translatedTier + ' ' + (soloQueueRankData?.rank ?? '') + ' ' + i18n.__('reply5_2');
         }
 
         // Set verified role
@@ -283,7 +277,7 @@ class LoLRanks {
           await member?.roles.add(verifiedRole);
         }
       } else {
-        reply += i18n.__('reply6') + (this.config.channels.help ? message.guild.channels.cache.get(this.config.channels.help).toString() : serverOwner) + '!';
+        reply += i18n.__('reply6') + ' ' + (this.config.channels.help ? message.guild.channels.cache.get(this.config.channels.help).toString() : serverOwner) + '!';
 
         this.updatePlayer(discordID, {
           tier: null,
