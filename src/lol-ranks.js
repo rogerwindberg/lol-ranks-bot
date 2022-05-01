@@ -189,7 +189,6 @@ class LoLRanks {
       } catch (error) {
         // TODO change translations to profile picture method
         // TODO add Done button
-        // TODO check whitespaces of translations used in replies
       }
     }
 
